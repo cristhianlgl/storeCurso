@@ -1,7 +1,7 @@
 <div class="grid grid-cols-3 gap-8 m-5">
-    <app-product/>
-    <app-product/>
-    <app-product/>
-    <app-product/>
-    <app-product/>
+    <app-product [img]="'https://picsum.photos/640/640?r=23'" [price]="100" [title]="'Prodcuto 1'" (addToCart)="getFromChild($event)" />
+    <app-product [img]="'https://picsum.photos/640/640?r=24'" [price]="100" [title]="'Prodcuto 1'" (addToCart)="getFromChild($event)"/>
+    <app-product [img]="'https://picsum.photos/640/640?r=25'" [price]="100" [title]="'Prodcuto 1'" (addToCart)="getFromChild($event)"/>
+    <app-product [img]="'https://picsum.photos/640/640?r=26'" [price]="100" [title]="'Prodcuto 1'" (addToCart)="getFromChild($event)"/>
+    <app-product [img]="'https://picsum.photos/640/640?r=27'" [price]="100" [title]="'Prodcuto 1'" (addToCart)="getFromChild($event)"/>
 </div>
