@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -10,6 +10,8 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 export class CounterComponent {
   @Input({required : true}) duration:number  = 0;
   @Input({required : true}) message:string  = '';
+  counter = signal(0);
+  counterRef:number | undefined ;
 
   constructor(){
     console.log('esta en el counter en constructor')
@@ -25,7 +27,11 @@ export class CounterComponent {
   }
 
   ngOnInit(){
-    console.log("OnInit")
+    console.log("OnInit");
+    this.counterRef = window.setInterval(()=>{
+      console.log("run interval")
+      this.counter.update(valor => ++valor);
+    },1000)
   }
 
   ngAfterViewInit(){
@@ -33,7 +39,8 @@ export class CounterComponent {
   }
 
   ngOnDestroy(){
-    console.log("onDestroy")
+    console.log("onDestroy");
+    window.clearInterval(this.counterRef);
   }
 
   doSomething(){
