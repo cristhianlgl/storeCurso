@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { Product } from '../../../shared/models/product.model';
 import { ProductComponent } from '../../componets/product/product.component';
 import { HeaderComponent } from '../../../shared/componets/header/header.component';
+import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +15,8 @@ import { HeaderComponent } from '../../../shared/componets/header/header.compone
 export class ListComponent {
 
   products = signal<Product[]>([]);
-  cart = signal<Product[]>([]);
+  cartServices = inject(CartService)
+  cart = this.cartServices.cart;
 
   constructor() {
     const productsInit:Product[] = [
@@ -65,6 +67,6 @@ export class ListComponent {
 
   }
   getFromChild(product:Product){
-    this.cart.update(value => [...value, product])
+    this.cartServices.addProductCart(product);
   }
 }

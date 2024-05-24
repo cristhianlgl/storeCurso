@@ -40,7 +40,7 @@
       </div>
       <div class="flex items-center">
         <button class="relative border rounded p-2" (click)="toogleSideMenu()">
-            <div class="absolute -top-2 -left-3 w-5 h-5 rounded bg-slate-800 text-white text-sm" >{{cart.length}}</div>
+            <div class="absolute -top-2 -left-3 w-5 h-5 rounded bg-slate-800 text-white text-sm" >{{cart().length}}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -83,7 +83,7 @@
     </button>
   </div>
     <ul role="list" class="divide-y divide-gray-200">
-    @for (item of cart; track $index) {
+    @for (item of cart(); track $index) {
         <li class="py-3 sm:py-4">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
@@ -102,5 +102,5 @@
     }
   </ul>
   
-  <h3 class="border-t pt-2">Total compra: {{getTotal()}}</h3>
+  <h3 class="border-t pt-2">Total compra: {{total()}}</h3>
 </div>
