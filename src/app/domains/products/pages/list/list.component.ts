@@ -4,6 +4,7 @@ import { Product } from '../../../shared/models/product.model';
 import { ProductComponent } from '../../componets/product/product.component';
 import { HeaderComponent } from '../../../shared/componets/header/header.component';
 import { CartService } from '../../../shared/services/cart.service';
+import { ProductService } from '../../../shared/services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -15,57 +16,17 @@ import { CartService } from '../../../shared/services/cart.service';
 export class ListComponent {
 
   products = signal<Product[]>([]);
-  cartServices = inject(CartService)
+  cartServices = inject(CartService);
+  productServices = inject(ProductService);
   cart = this.cartServices.cart;
 
-  constructor() {
-    const productsInit:Product[] = [
-      {
-        id: Date.now(),
-        title: 'producto 1',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=23',
-        createAt: new Date().toISOString()
-      },
-      {
-        id: Date.now(),
-        title: 'producto 2',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=24',
-        createAt: new Date().toISOString()
-      },
-      {
-        id: Date.now(),
-        title: 'producto 3',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=25',
-        createAt: new Date().toISOString()
-      },
-      {
-        id: Date.now(),
-        title: 'producto 1',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=23',
-        createAt: new Date().toISOString()
-      },
-      {
-        id: Date.now(),
-        title: 'producto 2',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=24',
-        createAt: new Date().toISOString()
-      },
-      {
-        id: Date.now(),
-        title: 'producto 3',
-        price : 100,
-        image: 'https://picsum.photos/640/640?r=25',
-        createAt: new Date().toISOString()
-      }
-    ];
-    this.products.set(productsInit);
-
+  ngOnInit(){
+    this.productServices.getAll().subscribe({
+      next:(data) => this.products.set(data),
+      error: () => {} 
+    });  
   }
+
   getFromChild(product:Product){
     this.cartServices.addProductCart(product);
   }
