@@ -22,7 +22,10 @@ export class ListComponent {
 
   ngOnInit(){
     this.productServices.getAll().subscribe({
-      next:(data) => this.products.set(data),
+      next:(data) => {
+        data.forEach(x => x.creationAt = new Date('2024-02-21').toISOString())
+        this.products.set(data)
+      },
       error: () => {} 
     });  
   }
