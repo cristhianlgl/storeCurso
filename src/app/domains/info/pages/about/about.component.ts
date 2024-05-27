@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { CounterComponent } from '../../../shared/componets/counter/counter.component';
+import { CounterComponent } from '@/shared/componets/counter/counter.component';
 import { NgIf } from '@angular/common';
-import { WaveAudioComponent } from '../../components/wave-audio/wave-audio.component';
+import { WaveAudioComponent } from '@/info/components/wave-audio/wave-audio.component';
 
 @Component({
   selector: 'app-about',
