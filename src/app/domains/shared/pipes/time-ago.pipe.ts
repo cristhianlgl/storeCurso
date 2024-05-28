@@ -1,4 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { formatDistanceToNow } from 'date-fns';
+import { es } from 'date-fns/locale';
 
 @Pipe({
   name: 'timeAgo',
@@ -6,8 +8,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeAgoPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string): string {
+    return formatDistanceToNow(
+      new Date(value), {
+      addSuffix: true,
+      locale: es
+    })
   }
 
 }
