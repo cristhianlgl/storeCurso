@@ -4,11 +4,12 @@ import { NgIf } from '@angular/common';
 import { WaveAudioComponent } from '@/info/components/wave-audio/wave-audio.component';
 import { LighlightDirective } from '@/shared/directives/lighlight.directive';
 import { environment } from '../../../../../environments/environment.development';
+import { HeaderComponent } from '@/shared/componets/header/header.component';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CounterComponent, NgIf, WaveAudioComponent, LighlightDirective],
+  imports: [CounterComponent, NgIf, WaveAudioComponent, LighlightDirective, HeaderComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
