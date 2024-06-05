@@ -4,5 +4,7 @@ export interface Product {
   price: number,
   image: string,
   images: string[]
-  creationAt: string
+  creationAt: string,
+  description: string,
+  category: string
 }

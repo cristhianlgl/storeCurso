@@ -15,4 +15,8 @@ export class ProductService {
     //return this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products?limit=15&offset=15')
     return this.http.get<Product[]>('https://fakestoreapi.com/products?limit=10')
   }
+
+  getById(id:string){
+    return this.http.get<Product>(`https://fakestoreapi.com/products/${id}`)
+  }
 }
