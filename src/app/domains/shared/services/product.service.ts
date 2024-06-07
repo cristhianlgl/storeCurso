@@ -11,9 +11,12 @@ export class ProductService {
 
   constructor() { }
 
-  getAll() {
-    return this.http.get<Product[]>('https://api.escuelajs.co/api/v1/products?limit=15&offset=5')
-    //return this.http.get<Product[]>('https://fakestoreapi.com/products?limit=10')
+  getAll(category_id?:string) {
+    const url = new URL('https://api.escuelajs.co/api/v1/products?limit=15&offset=5');
+    if(category_id)
+      url.searchParams.set('categoryId', category_id)
+    
+    return this.http.get<Product[]>(url.href)
   }
 
   getById(id: string) {

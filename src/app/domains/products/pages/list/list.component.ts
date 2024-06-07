@@ -1,32 +1,49 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
+import { RouterLinkWithHref } from '@angular/router';
 
 import { Product } from '@/shared/models/product.model';
 import { ProductComponent } from '@/products/componets/product/product.component';
 import { CartService } from '@/shared/services/cart.service';
 import { ProductService } from '@/shared/services/product.service';
+import { CategoryService } from '@/shared/services/category.service';
+import { Category } from '@/shared/models/category';
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [ProductComponent],
+  imports: [ProductComponent, RouterLinkWithHref],
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
 export class ListComponent {
 
   products = signal<Product[]>([]);
+  categories = signal<Category[]>([]);
   cartServices = inject(CartService);
   productServices = inject(ProductService);
-  cart = this.cartServices.cart;
+  categoryServices = inject(CategoryService);
+  category_id = input<string>()
 
   ngOnInit(){
-    this.productServices.getAll().subscribe({
-      next:(data) => {
-        //data.forEach(x => x.creationAt = new Date('2024-02-21').toISOString())
-        this.products.set(data)
-      },
-      error: () => {} 
-    });  
+    this.getCategories();  
+  }
+
+  ngOnChanges(){
+    this.getProducts();
+  }
+
+  private getProducts() {
+    this.productServices.getAll(this.category_id()).subscribe({
+      next: (data) => this.products.set(data),
+      error: () => { }
+    });
+  }
+
+  private getCategories() {
+    this.categoryServices.getAll().subscribe({
+      next: (data) =>  this.categories.set(data),
+      error: () => { }
+    });
   }
 
   getFromChild(product:Product){
