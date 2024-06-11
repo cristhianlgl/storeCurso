@@ -12,7 +12,7 @@ import { environment } from '../../../../../environments/environment.development
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
-export class AboutComponent {
+export default class AboutComponent {
   duration = signal(0);
   message = signal('hola');
   audioUrl = 'assets/audio.mp3'

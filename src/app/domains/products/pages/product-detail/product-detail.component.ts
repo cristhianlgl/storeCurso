@@ -11,17 +11,17 @@ import { CartService } from '@/shared/services/cart.service';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent {
+export default class ProductDetailComponent {
   private productoService = inject(ProductService)
   private cartService = inject(CartService)
-  @Input() id?: string ; 
+  @Input() id?: string ;
   product = signal<Product | null>(null);
   cover = signal('')
-  
+
   ngOnInit(){
     if(!this.id)
       return;
-    
+
     this.productoService.getById(this.id).subscribe({
       next: (result) =>
         {

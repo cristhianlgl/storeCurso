@@ -15,7 +15,7 @@ import { Category } from '@/shared/models/category';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent {
+export default class ListComponent {
 
   products = signal<Product[]>([]);
   categories = signal<Category[]>([]);
@@ -25,7 +25,7 @@ export class ListComponent {
   category_id = input<string>()
 
   ngOnInit(){
-    this.getCategories();  
+    this.getCategories();
   }
 
   ngOnChanges(){
