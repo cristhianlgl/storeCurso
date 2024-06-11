@@ -2,5 +2,7 @@
 <p> <input type="text" [value]="message()" (change)="setMessage($event)"></p>
 <span lighlight>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, porro autem voluptatibus impedit excepturi libero magnam rerum numquam nostrum quidem sequi eveniet obcaecati dolorum minima. A ipsum aperiam in laudantium!</span>
 <h1>hola: {{api}}</h1>
-<app-counter [duration]="duration()" [message]="message()" *ngIf="duration()>=0" />
+@if (duration()>=0) {
+  <app-counter [duration]="duration()" [message]="message()" />
+}
 <app-wave-audio [audioUrl]="audioUrl"/>
